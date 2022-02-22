@@ -1,3 +1,9 @@
 # Crown Clothing
 
-E-commerce application.
+E-Commerce web shop application.
+
+## Available Scripts
+
+In the project directory, you can run:
+
+### `yarn start`
