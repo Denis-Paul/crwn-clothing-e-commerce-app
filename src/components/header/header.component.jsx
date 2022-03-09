@@ -9,7 +9,7 @@ import CartDropdown from '../cart-dropdown/cart-dropdown.component';
 import './header.styles.scss';
 import { ReactComponent as Logo } from '../../assets/crown.svg';
 
-const Header = ({ currentUser }) => (
+const Header = ({ currentUser, hidden }) => (
   <div className='header'>
     <Link className='logo-container' to="/">
       <Logo className='logo' />
@@ -23,18 +23,19 @@ const Header = ({ currentUser }) => (
       </Link>
       {
         currentUser ? 
-        <div className='option' onClick={() => auth.signOut()}> Sign Out </div>
+        (<div className='option' onClick={() => auth.signOut()}> Sign Out </div>)
         :
-        <Link className='option' to='/signin'> Sign In </Link>
+        (<Link className='option' to='/signin'> Sign In </Link>)
       }
       <CartIcon />
     </div>
-    <CartDropdown />
+    { hidden ? null : <CartDropdown /> }
   </div>
 );
 
-const mapStateToProps = state => ({ // state -> root reducer
-  currentUser: state.user.currentUser
+const mapStateToProps = ({ user: { currentUser }, cart: { hidden } }) => ({ // state -> root reducer; state is destructured
+  currentUser,
+  hidden
 })
 
 export default connect(mapStateToProps)(Header);
