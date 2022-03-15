@@ -6,6 +6,7 @@ import storage from "redux-persist/lib/storage"; // localStorage obj from the wi
 import userReducer from "./user/user.reducer";
 import cartReducer from "./cart/cart.reducer";
 import directoryReducer from "./directory/directory.reducer";
+import shopReducer from "./shop/shop.reducer";
 
 // persist config obj
 const persistConfig = {
@@ -17,7 +18,8 @@ const persistConfig = {
 const rootReducer = combineReducers({
     user: userReducer, // handled by Firebase auth
     cart: cartReducer,
-    directory: directoryReducer
+    directory: directoryReducer,
+    shop: shopReducer
 });
 
 export default persistReducer(persistConfig, rootReducer); // returns root reducer with persistence capabilities
